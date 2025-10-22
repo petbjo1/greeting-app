@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.bjorklundlabs</groupId>
     <artifactId>greeting-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.7</version>
     <name>greeting-app</name>
     <description>Boilerplate project</description>
     <url/>
