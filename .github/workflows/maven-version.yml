@@ -11,7 +11,15 @@ jobs:
 
     steps:
       # 1. Checkout code
-      - uses: actions/checkout@v4
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensures you have full history
+          ref: ${{ github.ref }}  # Checks out the branch that triggered the workflow
+
+      - name: Ensure on branch
+        run: |
+          git checkout ${{ github.ref_name }}
 
       # 2. Setup Java
       - name: Set up Java
@@ -38,4 +46,4 @@ jobs:
           git config user.email "actions@github.com"
           git add pom.xml
           git commit -m "Bump Maven version to $VERSION"
-          git push
+          git push ${{ github.ref_name }}
