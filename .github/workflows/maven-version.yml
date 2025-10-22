@@ -10,40 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
-      - name: Check out code
+      - name: Check out main
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Ensures you have full history
-          ref: ${{ github.ref }}  # Checks out the branch that triggered the workflow
+          fetch-depth: 0
+          ref: main
+          persist-credentials: true
 
-      - name: Ensure on branch
-        run: |
-          git checkout ${{ github.ref_name }}
-
-      # 2. Setup Java
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
 
-      # 3. Extract tag version (remove 'v' prefix)
       - name: Extract version from tag
         id: vars
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-      # 4. Update Maven project version
       - name: Update Maven version
-        run: mvn versions:set -DnewVersion=$VERSION
+        run: mvn -q versions:set -DnewVersion=$VERSION
 
       # 5. Commit and push changes
-      - name: Commit updated version
+      - name: Commit updated version to main
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add pom.xml
-          git commit -m "Bump Maven version to $VERSION"
-          git push ${{ github.ref_name }}
+          git add -A pom.xml
+          # Only commit if there are changes
+          if ! git diff --cached --quiet; then
+            git commit -m "Bump Maven version to $VERSION"
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
