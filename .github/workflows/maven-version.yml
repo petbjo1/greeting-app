@@ -1,4 +1,4 @@
-name: Auto Bump Maven Version from Tag
+name: Auto Bump Maven Version from Tag vX.X.X
 
 on:
   push:
