@@ -65,8 +65,7 @@ Returns a personalized greeting message with an auto-incrementing ID.
 ``` 
 
 **Examples:**
-```
-bash
+```bash
 # Default greeting
 curl [http://localhost:8080/greeting](http://localhost:8080/greeting)
 # Response:
@@ -156,15 +155,18 @@ The project includes Spring Boot DevTools for automatic restart during developme
 ```
 
 Make changes to your code, and the application will automatically restart.
+
 ### Configuration
+
 Application properties can be configured in : `src/main/resources/application.properties`
-``` properties
+```properties
 # Server port (default: 8080)
 server.port=8080
 
 # Actuator endpoints
 management.endpoints.web.exposure.include=health,info
 ```
+
 ## 🤝 Contributing
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -173,7 +175,8 @@ management.endpoints.web.exposure.include=health,info
 5. Open a Pull Request
 
 ## 📄 License
-This project is a boilerplate/template project. Please add your license information.
+This project is a boilerplate/template project. Use it as you wish, but please don't forget to give credit to the original author.
+
 ## 👤 Author
 **Bjorklund Labs**
 - GitHub: [@petbjo1](https://github.com/petbjo1)
