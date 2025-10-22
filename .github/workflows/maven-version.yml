@@ -1,0 +1,41 @@
+name: Auto Bump Maven Version from Tag
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers on semantic version tags like v1.2.3
+
+jobs:
+  update-maven-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - uses: actions/checkout@v4
+
+      # 2. Setup Java
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      # 3. Extract tag version (remove 'v' prefix)
+      - name: Extract version from tag
+        id: vars
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      # 4. Update Maven project version
+      - name: Update Maven version
+        run: mvn versions:set -DnewVersion=$VERSION
+
+      # 5. Commit and push changes
+      - name: Commit updated version
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add pom.xml
+          git commit -m "Bump Maven version to $VERSION"
+          git push
