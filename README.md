@@ -126,12 +126,8 @@ This project is configured to publish to GitHub Packages. Packages are automatic
 
 The project includes comprehensive test coverage:
 
-- **Unit Tests**: Fast, isolated tests for individual components
-- **Integration Tests**: Tests that verify the application works correctly when fully assembled
-
-Test files:
-- `ApplicationTests.java` - Context loading tests
-- `GreetingRestControllerIT.java` - REST endpoint integration tests
+- **\*Tests**: Fast, isolated tests for individual components
+- **\*IntegrationTests**: Tests that verify the application works correctly when fully assembled
 
 ## 🔧 Development
 
