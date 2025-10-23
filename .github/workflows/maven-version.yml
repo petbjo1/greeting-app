@@ -1,0 +1,50 @@
+name: Auto Bump Maven Version from Tag vX.X.X
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write   # allow GITHUB_TOKEN to push commits
+
+jobs:
+  update-maven-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out default branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Use the repository default branch (works whether it's main, master, or another name)
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: true
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Extract version from tag
+        id: vars
+        run: |
+          echo "GITHUB_REF=$GITHUB_REF"
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Update Maven version
+        run: mvn -q versions:set -DnewVersion=$VERSION
+
+      - name: Commit updated version to default branch
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A pom.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "Bump Maven version to $VERSION"
+            git push origin "${{ github.event.repository.default_branch }}"
+          else
+            echo "No changes to commit"
+          fi
