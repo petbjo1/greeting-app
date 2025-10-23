@@ -31,7 +31,8 @@ A modern Spring Boot REST API boilerplate project that provides a simple greetin
 
 ### Clone the Repository
 ```bash
-git clone [https://github.com/petbjo1/greeting-app.git](https://github.com/petbjo1/greeting-app.git) cd greeting-app
+git clone https://github.com/petbjo1/greeting-app.git
+cd greeting-app
 ``` 
 
 ### Run the Application
@@ -70,11 +71,11 @@ Returns a personalized greeting message with an auto-incrementing ID.
 **Examples:**
 ```bash
 # Default greeting
-curl [http://localhost:8080/greeting](http://localhost:8080/greeting)
+curl http://localhost:8080/greeting
 # Response:
 # {"id":1,"content":"Hello, World!"}
 # Custom greeting
-curl [http://localhost:8080/greeting?name=Alice](http://localhost:8080/greeting?name=Alice)
+curl http://localhost:8080/greeting?name=Alice
 # Response:
 # {"id":2,"content":"Hello, Alice!"}
 ``` 
