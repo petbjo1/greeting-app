@@ -1,6 +1,8 @@
 # Greeting App 👋
 
-[![Maven Package](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml)
+[![Maven Package](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish1.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish1.yml)
+[![Maven Versioning](https://github.com/petbjo1/greeting-app/actions/workflows/maven-version1.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/maven-version1.yml)
+[![Dockerize](https://github.com/petbjo1/greeting-app/actions/workflows/docker-push1.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/docker-push1.yml)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0--SNAPSHOT-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Coverage](.github/badges/jacoco.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/code-coverage.yml)
