@@ -185,7 +185,7 @@ This workflow:
 Triggered on: **Git tags** matching pattern `v*.*.*`
 
 This workflow:
-- Extracts the version from the git tag (e.g., `v0.0.8` → `0.0.8`)
+- Extracts the version from the git tag (e.g., `v1.0.0` → `1.0.1`)
 - Updates the Maven `pom.xml` version automatically
 - Commits the version change back to the default branch
 
@@ -205,24 +205,24 @@ The Docker image is **automatically deployed** to [Render](https://render.com) w
 
 #### Try it out:
 ```bash
-curl https://peters-greeting-app.onrender.com/greeting
+curl https://greeting-app-22fn.onrender.com/greeting
 ```
 # Get custom greeting
 ```bash
-curl https://peters-greeting-app.onrender.com/greeting?name=YourName
+curl https://greeting-app-22fn.onrender.com/greeting?name=YourName
 ```
 # Health check
 
 ```bash
-curl https://peters-greeting-app.onrender.com/health
+curl https://greeting-app-22fn.onrender.com/health
 ```
 ### 🔄 Release Process
 To create a new release and trigger the full CI/CD pipeline:
 1. **Create and push a version tag:**
 
 ```bash
-   git tag v0.0.9
-   git push origin v0.0.9
+   git tag v1.0.2
+   git push origin v1.0.2
 ```
 1. **Create a GitHub Release:**
     - Go to the [Releases](https://github.com/petbjo1/greeting-app/releases) page
