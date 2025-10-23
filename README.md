@@ -174,8 +174,8 @@ This project uses **GitHub Actions** for continuous integration and deployment. 
 
 ### 📋 Workflows
 
-#### 1. **Maven Package** (`maven-publish.yml`)
-[![Maven Package](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml)
+#### 1. **Maven Package** (`maven-publish1.yml`)
+[![Maven Package](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish1.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml)
 
 Triggered on: **Release creation**
 
@@ -184,7 +184,7 @@ This workflow:
 - Runs all tests
 - Publishes the Maven package to **GitHub Packages**
 
-#### 2. **Auto Bump Maven Version** (`maven-version.yml`)
+#### 2. **Auto Bump Maven Version** (`maven-version1.yml`)
 Triggered on: **Git tags** matching pattern `v*.*.*`
 
 This workflow:
@@ -192,7 +192,7 @@ This workflow:
 - Updates the Maven `pom.xml` version automatically
 - Commits the version change back to the default branch
 
-#### 3. **Build & Push Docker Image** (`docker-push.yml`)
+#### 3. **Build & Push Docker Image** (`docker-push1.yml`)
 Triggered on: **Release creation**
 
 This workflow:
