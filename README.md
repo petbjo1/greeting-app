@@ -1,7 +1,6 @@
 # Greeting App 👋
 
 [![Maven Package](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml)
-[![Version](https://img.shields.io/badge/version-0.0.8-blue.svg)](https://github.com/petbjo1/greeting-app)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0--SNAPSHOT-brightgreen.svg)](https://spring.io/projects/spring-boot)
 
@@ -75,16 +74,6 @@ curl [http://localhost:8080/greeting?name=Alice](http://localhost:8080/greeting?
 # Response:
 # {"id":2,"content":"Hello, Alice!"}
 ``` 
-
-### Actuator Endpoints
-
-Spring Boot Actuator endpoints are available at `/actuator`:
-```bash
-# Health check
-curl [http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
-# Application info
-curl [http://localhost:8080/actuator/info](http://localhost:8080/actuator/info)
-```
 
 ## 🔨 Building the Project
 
@@ -176,6 +165,90 @@ management.endpoints.web.exposure.include=health,info
 
 ## 📄 License
 This project is a boilerplate/template project. Use it as you wish, but please don't forget to give credit to the original author.
+
+## 🚀 CI/CD Pipeline
+
+This project uses **GitHub Actions** for continuous integration and deployment. The CI/CD pipeline is fully automated and consists of three main workflows:
+
+### 📋 Workflows
+
+#### 1. **Maven Package** (`maven-publish.yml`)
+[![Maven Package](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/petbjo1/greeting-app/actions/workflows/maven-publish.yml)
+
+Triggered on: **Release creation**
+
+This workflow:
+- Builds the project with Maven
+- Runs all tests
+- Publishes the Maven package to **GitHub Packages**
+
+#### 2. **Auto Bump Maven Version** (`maven-version.yml`)
+Triggered on: **Git tags** matching pattern `v*.*.*`
+
+This workflow:
+- Extracts the version from the git tag (e.g., `v0.0.8` → `0.0.8`)
+- Updates the Maven `pom.xml` version automatically
+- Commits the version change back to the default branch
+
+#### 3. **Build & Push Docker Image** (`docker-push.yml`)
+Triggered on: **Release creation**
+
+This workflow:
+- Builds a Docker image using the multi-stage Dockerfile
+- Pushes the image to **GitHub Container Registry** (ghcr.io)
+- Tags the image as `latest`
+
+### 🌐 Deployment
+
+The Docker image is **automatically deployed** to [Render](https://render.com) whenever a new release is created.
+
+**Live Application**: [https://greeting-app-22fn.onrender.com/greeting](https://greeting-app-22fn.onrender.com/greeting)
+
+#### Try it out:
+```bash
+curl https://peters-greeting-app.onrender.com/greeting
+```
+# Get custom greeting
+```bash
+curl https://peters-greeting-app.onrender.com/greeting?name=YourName
+```
+# Health check
+
+```bash
+curl https://peters-greeting-app.onrender.com/health
+```
+### 🔄 Release Process
+To create a new release and trigger the full CI/CD pipeline:
+1. **Create and push a version tag:**
+
+```bash
+   git tag v0.0.9
+   git push origin v0.0.9
+```
+1. **Create a GitHub Release:**
+    - Go to the [Releases](https://github.com/petbjo1/greeting-app/releases) page
+    - Click "Create a new release"
+    - Select the tag you just created
+    - Add release notes
+    - Publish the release
+
+2. **Automated steps that follow:**
+    - ✅ Maven version is updated in `pom.xml`
+    - ✅ Project is built and tested
+    - ✅ Maven package is published to GitHub Packages
+    - ✅ Docker image is built and pushed to GitHub Container Registry
+    - ✅ Application is automatically deployed to Render
+
+### 🐳 Docker Image
+The Docker image is available at:
+```bash
+ghcr.io/petbjo1/greeting-app:latest
+```
+Pull and run locally:
+```bash
+docker pull ghcr.io/petbjo1/greeting-app:latest
+docker run -p 8080:8080 ghcr.io/petbjo1/greeting-app:latest
+```
 
 ## 👤 Author
 **Björklund Labs**
