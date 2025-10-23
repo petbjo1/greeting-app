@@ -178,7 +178,7 @@ management.endpoints.web.exposure.include=health,info
 This project is a boilerplate/template project. Use it as you wish, but please don't forget to give credit to the original author.
 
 ## 👤 Author
-**Bjorklund Labs**
+**Björklund Labs**
 - GitHub: [@petbjo1](https://github.com/petbjo1)
 
 ## 🙏 Acknowledgments
