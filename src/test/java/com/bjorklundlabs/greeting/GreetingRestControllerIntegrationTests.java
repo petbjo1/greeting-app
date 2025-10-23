@@ -1,5 +1,6 @@
 package com.bjorklundlabs.greeting;
 
+import com.bjorklundlabs.greeting.model.Greeting;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@SpringBootTest
-class GreetingRestControllerIT {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class GreetingRestControllerIntegrationTests {
 
     @Autowired
     private WebApplicationContext webApplicationContext;

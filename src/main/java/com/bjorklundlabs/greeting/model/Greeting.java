@@ -1,4 +1,4 @@
-package com.bjorklundlabs.greeting;
+package com.bjorklundlabs.greeting.model;
 
 import lombok.Builder;
 
